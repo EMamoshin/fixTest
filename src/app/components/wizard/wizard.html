@@ -1,0 +1,70 @@
+<div class="step1" ng-show="vm.stepNumber == 1">
+  <h3>Ввод данных</h3>
+  <form name="dataForm">
+    <div class="form-group">
+      <label for="inputVal1">Первое значение</label>
+      <input type="text" ng-model="vm.val1" id="inputVal1" numbers-only class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="inputVal2">Второе значение</label>
+      <input type="text" ng-model="vm.val2" id="inputVal2" numbers-only class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="inputVal3">Третье значение</label>
+      <input type="text" ng-model="vm.val3" id="inputVal3" numbers-only class="form-control" required />
+    </div>
+  </form>
+</div>
+<div class="step2" ng-show="vm.stepNumber == 2">
+  <h3>Подтверждение данных</h3>
+  <table class="table table-condensed table-bordered">
+    <thead>
+    <tr>
+      <th>Первое значение</th>
+      <th>Второе значение</th>
+      <th>Третье значение</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{vm.val1}}</td>
+      <td>{{vm.val2}}</td>
+      <td>{{vm.val3}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="step3" ng-show="vm.stepNumber == 3">
+  <h3>Расчет</h3>
+  <h5>Подождите... <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/></h5>
+</div>
+<div class="step4" ng-show="vm.stepNumber == 4">
+  <h3>Результат</h3>
+  <table class="table table-condensed table-bordered">
+    <thead>
+    <tr>
+      <th>Первое значение</th>
+      <th>Второе значение</th>
+      <th>Третье значение</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{vm.val1}}</td>
+      <td>{{vm.val2}}</td>
+      <td>{{vm.val3}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <hr />
+  <h2 ng-class="(vm.total() % 2 == 0) ? 'text-success' : 'text-danger'">
+    Результат: {{vm.total()}}
+  </h2>
+</div>
+<button type="button" class="btn btn-default" ng-click="vm.prev()" ng-hide="vm.stepNumber == 3 || vm.stepNumber == 1">
+  <span class="glyphicon glyphicon-chevron-left"></span> {{vm.stepNumber == 4 ? 'Вернутся к вводу данных' : 'Назад'}}
+</button>
+<button type="button" class="btn btn-primary pull-right"
+        ng-disabled="dataForm.$invalid" ng-click="vm.next()" ng-hide="vm.stepNumber == 3 || vm.stepNumber == 4">
+  Продолжить <span class="glyphicon glyphicon-chevron-right"></span>
+</button>
